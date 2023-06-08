@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+
+</head>
+<body>
+    <section class="vh-100 gradient-custom">
+          <div class="container py-5 h-100">
+
+            <div class="row d-flex justify-content-center align-items-center h-100">
+              <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                <div class="card bg-dark text-white" style="border-radius: 1rem;">
+                  <div class="card-body p-5 text-center">
+                      <form action="" method="POST">
+                          {% csrf_token %}
+                        <div class="mb-md-5 mt-md-4 pb-5">
+
+                          <h2 class="fw-bold mb-2 text-uppercase">Casos covid19 colombia</h2>
+                            <br>
+                            <br>
+
+                          <div class="form-outline form-white mb-4">
+                              <select id="typeSelectX" name="departamentoIngresado" class="form-control form-control-lg">
+                                <option value="" selected disabled>Seleccione un departamento</option>
+                                <option value="Amazonas">Amazonas</option>
+                                <option value="Antioquia">Antioquia</option>
+                                <option value="Arauca">Arauca</option>
+                                <option value="Atlantico">Atlántico</option>
+                                <option value="Bolivar">Bolívar</option>
+                                <option value="Boyaca">Boyacá</option>
+                                <option value="Bogota">Bogotá</option>
+                                <option value="Caldas">Caldas</option>
+                                <option value="Caqueta">Caquetá</option>
+                                <option value="Casanare">Casanare</option>
+                                <option value="Cauca">Cauca</option>
+                                <option value="Cesar">Cesar</option>
+                                <option value="Choco">Chocó</option>
+                                <option value="Cordoba">Córdoba</option>
+                                <option value="Cundinamarca">Cundinamarca</option>
+                                <option value="Guainia">Guainía</option>
+                                <option value="Guaviare">Guaviare</option>
+                                <option value="Huila">Huila</option>
+                                <option value="Guajira">La Guajira</option>
+                                <option value="Magdalena">Magdalena</option>
+                                <option value="Meta">Meta</option>
+                                <option value="Narino">Nariño</option>
+                                <option value="Norte Santander">Norte de Santander</option>
+                                <option value="Putumayo">Putumayo</option>
+                                <option value="Quindio">Quindío</option>
+                                <option value="Risaralda">Risaralda</option>
+                                <option value="San Andres">San Andrés y Providencia</option>
+                                <option value="Santander">Santander</option>
+                                <option value="Sucre">Sucre</option>
+                                <option value="Tolima">Tolima</option>
+                                <option value="Valle">Valle del Cauca</option>
+                                <option value="Vaupes">Vaupés</option>
+                                <option value="Vichada">Vichada</option>
+                                <option value="Nacional">Nivel nacional</option>
+                              </select>
+                            <label class="form-label" for="typeSelectX">Seleccione un departamento</label>
+                          </div>
+
+
+                          <div class="form-outline form-white mb-4">
+                              <input type="number" id="typeNumberX" name="numeroRegistrosIngresados" class="form-control form-control-lg" min="0" max="50000">
+                              <label class="form-label" for="typeNumberX">Ingrese numero de registros que desea</label>
+                          </div>
+
+
+                          <button class="btn btn-outline-light btn-lg px-5" type="submit">Ingresar</button>
+
+                        </div>
+                      </form>
+
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+
+</body>
+</html>

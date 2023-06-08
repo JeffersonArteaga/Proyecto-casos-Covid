@@ -1,0 +1,184 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Resultados</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href='{% static "css/styles.css" %}' rel="stylesheet" />
+    </head>
+    <body id="page-top">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+            <div class="container">
+                <a class="navbar-brand" href="#page-top">Inicio</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars ms-1"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+                        <li class="nav-item"><a class="nav-link" href="#UbicacionCaso">Ubicacion casos</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#TipoContagio">Tipo de contagio</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#Edad">Edad</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#Estado">Estado</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#GruposEtnicos">Grupos etnicos</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#Sexo">Sexo</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#Municipios">Municipios</a></li>
+                        <li class="nav-item"><a class="navbar-brand" href="{% url 'home' %}">Salir</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Masthead-->
+        <div class="container-fluid bg-dark">
+            <br><br><br>
+        </div>
+        <header class="masthead">
+            <div class="container bg-dark bg-opacity-75" style="margin-top: -60px;">
+                <br><br>
+                <div class="masthead-subheading">Estadisticas Covid</div>
+                <div class="masthead-heading text-uppercase">{% if departamento == 'NACIONAL' %}
+                                                              A nivel nacional
+                                                              {% else %}
+                                                              Departamento de {{departamento}}
+                                                              {% endif %}</div>
+                <div class="masthead-subheading">Numero de datos {{numero_registros}}</div>
+                <a class="btn btn-primary btn-xl text-uppercase" href="#UbicacionCaso">Analizar estadisticas</a>
+                <br><br>
+            </div>
+
+        </header>
+        <!-- Tipo de contagio-->
+        <section class="page-section" id="UbicacionCaso">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-heading text-uppercase">Ubicacion del caso</h2>
+                    <img src='{% static "assets/img/ubicacionCaso.jpg" %}' alt="Gráfica de Frecuencia" style="width: 30%;" class="mx-auto">
+                </div>
+
+                <div class="row text-center">
+                    {% for valor, porcentaje in porcentajeUbicacionCaso.items %}
+                        <div class="col-md-4">
+                            <h4 class="my-3">{{ valor }}</h4>
+                            <p class="text-muted">{{ porcentaje|floatformat:3 }}%</p>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+        <section class="page-section bg-light" id="TipoContagio">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-heading text-uppercase">Fuente tipo de contagio</h2>
+                    <img src='{% static "assets/img/tipoContagio.jpg" %}' alt="Gráfica de Frecuencia" style="width: 30%;" class="mx-auto">
+                </div>
+
+                <div class="row text-center">
+                    {% for valor, porcentaje in porcentajeFuenteTipoContagio.items %}
+                        <div class="col-md-4">
+                            <h4 class="my-3">{{ valor }}</h4>
+                            <p class="text-muted">{{ porcentaje|floatformat:3 }}%</p>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+        <!-- About-->
+        <section class="page-section" id="Edad">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-heading text-uppercase">Frecuencia de edad</h2>
+                    <img src="data:image/png;base64,{{ graficaEdad }}" alt="Gráfica de Frecuencia" style="width: 100%;">
+                    <h3 class="section-heading text-uppercase">Promedio de edad {{promedioEdad}} años</h3>
+                </div>
+            </div>
+        </section>
+        <section class="page-section bg-light" id="Estado">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-heading text-uppercase">Estado</h2>
+                    <img src='{% static "assets/img/estado.jpg" %}' alt="Gráfica de Frecuencia" style="width: 30%;" class="mx-auto">
+                </div>
+
+                <div class="row text-center">
+                    {% for valor, porcentaje in porcentajeEstado.items %}
+                        <div class="col-md-4">
+                            <h4 class="my-3">{{ valor }}</h4>
+                            <p class="text-muted">{{ porcentaje|floatformat:3 }}%</p>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+        <!-- About-->
+        <section class="page-section" id="GruposEtnicos">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-heading text-uppercase">Frecuencia de grupos etnicos</h2>
+                    <img src="data:image/png;base64,{{ graficaGrupo }}" alt="Gráfica de Frecuencia" style="width: 100%;">
+                </div>
+            </div>
+        </section>
+        <!-- Portfolio Grid-->
+        <section class="page-section bg-light" id="Sexo">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-heading text-uppercase">Sexo</h2>
+                    <img src='{% static "assets/img/sexo.jpg" %}' alt="Gráfica de Frecuencia" style="width: 30%;" class="mx-auto">
+                </div>
+
+                <div class="row text-center">
+                    {% for valor, porcentaje in porcentajeSexo.items %}
+                        <div class="col-md-6">
+                            <h4 class="my-3">{% if valor == 'f' %}
+                                Mujeres
+                              {% elif valor == 'm' %}
+                                Hombres
+                              {% else %}
+                                {{ valor }}
+                              {% endif %}: {{ porcentaje|floatformat:1 }}%</h4>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+        <section class="page-section" id="Municipios">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-heading text-uppercase">Frecuencia de Municipios</h2>
+                    <img src="data:image/png;base64,{{ graficaMunicipios }}" alt="Gráfica de Frecuencia" style="width: 100%;">
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer-->
+        <footer class="footer py-4">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-4 text-lg-start text-center">Copyright &copy; Universidad Tecnologica de Pereira</div>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src='{% static "js/scripts.js" %}'></script>
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <!-- * *                               SB Forms JS                               * *-->
+        <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+    </body>
+</html>
